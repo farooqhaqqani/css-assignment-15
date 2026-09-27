@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube UI Clone</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f5f7;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      height: 60px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: #ff0000;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 30px solid #f80808;
+      
+    }
+
+    .search-bar {
+      width: 40%;
+      display: flex;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      border-left: none;
+      border-radius: 0 20px 20px 0;
+      background: #f8f8f8;
+      cursor: pointer;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .profile-pic {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    /* Container layout */
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #fff;
+      padding: 20px 10px;
+      border-right: 1px solid #e0e0e0;
+      overflow-y: auto;
+    }
+
+    .sidebar-group {
+      margin-bottom: 20px;
+    }
+
+    .sidebar-group h4 {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+      padding-left: 10px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      font-size: 14px;
+      color: #444;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .sidebar-item:hover, .sidebar-item.active {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    /* Categories tags */
+    .tags {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .tag {
+      padding: 6px 14px;
+      background: #e5e5e5;
+      border-radius: 16px;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .tag.active {
+      background: #000;
+      color: #fff;
+    }
+
+    /* Featured Banner */
+    .banner {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(90deg, #111, #444);
+      border-radius: 16px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px;
+      color: white;
+    }
+
+    .banner-text h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: 140px;
+      background-color: #ddd;
+      object-fit: cover;
+    }
+
+    .video-details {
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .channel-pic {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #bbb;
+      flex-shrink: 0;
+    }
+
+    .video-info h3 {
+      font-size: 14px;
+      line-height: 1.3;
+      margin-bottom: 4px;
+
+      /* Ellipsis after 2 lines */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .video-info p {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <span>▶</span> YouTube
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+      <button>🔍</button>
+    </div>
+    <div class="nav-icons">
+      <span>📹</span>
+      <span>🔔</span>
+      <div class="profile-pic"></div>
+    </div>
+  </header>
+
+  <!-- Body Section -->
+  <div class="container">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-group">
+        <a href="#" class="sidebar-item active">🏠 Home</a>
+        <a href="#" class="sidebar-item">🧭 Explore</a>
+        <a href="#" class="sidebar-item">📺 Subscriptions</a>
+      </div>
+      <hr style="margin: 10px 0; border: none; border-top: 1px solid #eee;">
+      <div class="sidebar-group">
+        <a href="#" class="sidebar-item">📁 Library</a>
+        <a href="#" class="sidebar-item">🕒 History</a>
+        <a href="#" class="sidebar-item">🎬 Your Videos</a>
+        <a href="#" class="sidebar-item">⏱ Watch Later</a>
+        <a href="#" class="sidebar-item">👍 Liked Videos</a>
+      </div>
+      <div class="sidebar-group">
+        <h4>Subscriptions</h4>
+        <a href="#" class="sidebar-item">👤 Channel 1</a>
+        <a href="#" class="sidebar-item">👤 Channel 2</a>
+        <a href="#" class="sidebar-item">👤 Channel 3</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- Category Filter Pills -->
+      <div class="tags">
+        <span class="tag active">All</span>
+        <span class="tag">Gaming</span>
+        <span class="tag">Beats</span>
+        <span class="tag">Rapping</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Live</span>
+        <span class="tag">Mixes</span>
+        <span class="tag">Podcasts</span>
+      </div>
+
+      <!-- Top Featured Banner -->
+      <div class="banner">
+        <div class="banner-text">
+          <h2>Featured Video Title</h2>
+          <p>Watch the latest highlights and updates now.</p>
+        </div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="video-grid">
+
+        <div class="video-card">
+          <div class="thumbnail"></div>
+          <div class="video-details">
+            <div class="channel-pic"></div>
+            <div class="video-info">
+              <h3>Super Intelligence Memory Music</h3>
+              <p>Channel Name</p>
+              <p>230K views • 2 days ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="thumbnail"></div>
+          <div class="video-details">
+            <div class="channel-pic"></div>
+            <div class="video-info">
+              <h3>A Supa Score - Beats & Rapping</h3>
+              <p>Music Hub</p>
+              <p>1.2M views • 1 month ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="thumbnail"></div>
+          <div class="video-details">
+            <div class="channel-pic"></div>
+            <div class="video-info">
+              <h3>Lo-Fi Chill Beats To Sleep To</h3>
+              <p>Chill Nation</p>
+              <p>850K views • 3 weeks ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="thumbnail"></div>
+          <div class="video-details">
+            <div class="channel-pic"></div>
+            <div class="video-info">
+              <h3>React JS Crash Course 2026</h3>
+              <p>Code Master</p>
+              <p>500K views • 5 months ago</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
+</body>
+</html>
